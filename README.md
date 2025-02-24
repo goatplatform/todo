@@ -96,3 +96,7 @@ current directory)
 - [ ] Deadline reminder notifications
 - [ ] Multiple todo lists per user
 - [ ] Share todo lists with others
+
+## Screenshots
+
+<img width="1792" alt="Screenshot 2025-02-24 at 14 30 55" src="https://github.com/user-attachments/assets/206a1f22-929f-458c-8e81-e0205732a6a5" />
