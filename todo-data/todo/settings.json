@@ -1,0 +1,121 @@
+{
+  "currentSession": {
+    "id": "s2nrurs82j130n67th2daknb",
+    "publicKey": {
+      "kty": "EC",
+      "crv": "P-384",
+      "alg": "ES384",
+      "x": "sa3q4Qru5MQeK3eQ0l_A8yp5qwJAZbZaf2AJh6mNEXCIIFpSSjjGsqHymamutEAs",
+      "y": "4xSG4LusAdVeFhZ6o0q4OoKEdVZlkC347CfOg-lIdivcQbIa53YsUivvebN3fauD",
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true
+    },
+    "privateKey": {
+      "kty": "EC",
+      "crv": "P-384",
+      "alg": "ES384",
+      "x": "sa3q4Qru5MQeK3eQ0l_A8yp5qwJAZbZaf2AJh6mNEXCIIFpSSjjGsqHymamutEAs",
+      "y": "4xSG4LusAdVeFhZ6o0q4OoKEdVZlkC347CfOg-lIdivcQbIa53YsUivvebN3fauD",
+      "d": "VgkxeL9oVDb30eDXxlwh1CO72CMTkatGoF48e1OiY_G9Wd_PH3lToLW-RQ1JdmYu",
+      "key_ops": [
+        "sign"
+      ],
+      "ext": true
+    },
+    "owner": "root",
+    "expiration": 1742716282.267
+  },
+  "roots": [
+    {
+      "id": "s2nrurs82j130n67th2daknb",
+      "publicKey": {
+        "kty": "EC",
+        "crv": "P-384",
+        "alg": "ES384",
+        "x": "sa3q4Qru5MQeK3eQ0l_A8yp5qwJAZbZaf2AJh6mNEXCIIFpSSjjGsqHymamutEAs",
+        "y": "4xSG4LusAdVeFhZ6o0q4OoKEdVZlkC347CfOg-lIdivcQbIa53YsUivvebN3fauD",
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true
+      },
+      "privateKey": {
+        "kty": "EC",
+        "crv": "P-384",
+        "alg": "ES384",
+        "x": "sa3q4Qru5MQeK3eQ0l_A8yp5qwJAZbZaf2AJh6mNEXCIIFpSSjjGsqHymamutEAs",
+        "y": "4xSG4LusAdVeFhZ6o0q4OoKEdVZlkC347CfOg-lIdivcQbIa53YsUivvebN3fauD",
+        "d": "VgkxeL9oVDb30eDXxlwh1CO72CMTkatGoF48e1OiY_G9Wd_PH3lToLW-RQ1JdmYu",
+        "key_ops": [
+          "sign"
+        ],
+        "ext": true
+      },
+      "owner": "root",
+      "expiration": 1742716282.267
+    }
+  ],
+  "trustedSessions": [
+    {
+      "id": "s2nrurs82j130n67th2daknb",
+      "publicKey": {
+        "kty": "EC",
+        "crv": "P-384",
+        "alg": "ES384",
+        "x": "sa3q4Qru5MQeK3eQ0l_A8yp5qwJAZbZaf2AJh6mNEXCIIFpSSjjGsqHymamutEAs",
+        "y": "4xSG4LusAdVeFhZ6o0q4OoKEdVZlkC347CfOg-lIdivcQbIa53YsUivvebN3fauD",
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true
+      },
+      "privateKey": {
+        "kty": "EC",
+        "crv": "P-384",
+        "alg": "ES384",
+        "x": "sa3q4Qru5MQeK3eQ0l_A8yp5qwJAZbZaf2AJh6mNEXCIIFpSSjjGsqHymamutEAs",
+        "y": "4xSG4LusAdVeFhZ6o0q4OoKEdVZlkC347CfOg-lIdivcQbIa53YsUivvebN3fauD",
+        "d": "VgkxeL9oVDb30eDXxlwh1CO72CMTkatGoF48e1OiY_G9Wd_PH3lToLW-RQ1JdmYu",
+        "key_ops": [
+          "sign"
+        ],
+        "ext": true
+      },
+      "owner": "root",
+      "expiration": 1742716282.267
+    },
+    {
+      "id": "yalg7xfcrmucz82dvyc6o905",
+      "publicKey": {
+        "kty": "EC",
+        "crv": "P-384",
+        "alg": "ES384",
+        "x": "eIUfXv_zlP69iGFXFuh49H079vVMD-wbahd-O8ApkPnC4ZobrR57RZDpU5BMR-_l",
+        "y": "ZtuYUfGn6cCMAMdxO38t0i7hijIfYeIEKLFr0jvT2AbDWAmp5Bl8DFj8TEaI5SU4",
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true
+      },
+      "expiration": 1742716283.63,
+      "owner": "7mk7wlbd0gjder6sh5bq0h4m"
+    },
+    {
+      "id": "fd302we6g6hxswkhmmtf4lwb",
+      "publicKey": {
+        "kty": "EC",
+        "crv": "P-384",
+        "alg": "ES384",
+        "x": "WX5RSplED2l6bxj847WyP8yhDdRlPZDGeOX-RZiiyht10YplJWyHDadunytR7e36",
+        "y": "5OT1GeIApKtjMwzw27hP9um6TeRAi0-aL_dF0XuSjjKKw_lbNc4u2vb6NUJyAm8m",
+        "key_ops": [
+          "verify"
+        ],
+        "ext": true
+      },
+      "expiration": 1742716885.917
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "dom.asynciterable",
+      "deno.ns"
+    ]
+  },
+  "imports": {
+    "@aws-sdk/client-ses": "npm:@aws-sdk/client-ses@^3.750.0",
+    "@emotion/react": "npm:@emotion/react@^11.14.0",
+    "@emotion/styled": "npm:@emotion/styled@^11.14.0",
+    "@fontsource/inter": "npm:@fontsource/inter@^5.1.1",
+    "@goatdb/goatdb": "jsr:@goatdb/goatdb@^0.1.3",
+    "@mui/icons-material": "npm:@mui/icons-material@^6.4.4",
+    "@mui/joy": "npm:@mui/joy@^5.0.0-beta.51",
+    "@mui/types": "npm:@mui/types@^7.2.21",
+    "@std/path": "jsr:@std/path@^1.0.8",
+    "@types/react": "npm:@types/react@19.0.8",
+    "react": "npm:react@19.0.0",
+    "react-dom": "npm:react-dom@^19.0.0",
+    "react-jss": "npm:react-jss@10.10.0",
+    "yargs": "npm:yargs@^17.7.2"
+  },
+  "tasks": {
+    "debug": "deno run -A server/debug-server.ts",
+    "build": "deno run -A server/build.ts"
+  },
+  "version": "0.0.1",
+  "nodeModulesDir": "auto"
+}
