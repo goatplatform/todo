@@ -1,4 +1,4 @@
-# Self-Hosted Todo List
+# Self-Hosted Minimalistic Todo List
 
 ✨ Try it yourself at [todo.goatdb.dev](https://todo.goatdb.dev)! ✅
 
