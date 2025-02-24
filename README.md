@@ -18,9 +18,52 @@ persistence using GoatDB's server framework.
 ## Quick Start
 
 1. Clone this repository
-2. Configure email settings in `server/server.ts` (supports SMTP or AWS SES)
+2. Configure email settings in `server/server.ts` (supports SMTP or AWS SES via
+   [NodeMailer](https://nodemailer.com/))
 3. Run `deno task debug` to start the development server
 4. Visit `http://localhost:8001` to access your todo list
+
+### Email Configuration
+
+Edit `server/server.ts` to configure email settings.
+
+Example SMTP configuration (see https://nodemailer.com/smtp/):
+
+```ts
+// In main() function
+const server = new Server({
+  // ... other server config ...
+  emailConfig: {
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: true,
+    auth: {
+      user: "user@gmail.com",
+      pass: "app-specific-password",
+    },
+    from: "system@my.domain.com",
+  },
+});
+```
+
+Example Amazon SES configuration (see https://nodemailer.com/ses/):
+
+```ts
+// Insert this import at the top of the file
+import { SendRawEmailCommand, SES } from "npm:@aws-sdk/client-ses";
+
+// In main() function
+const server = new Server({
+  // ... other server config ...
+  emailConfig: {
+    SES: {
+      ses: new SES({ region: "us-east-1" }),
+      aws: { SendRawEmailCommand },
+    },
+    from: "system@my.domain.com",
+  },
+});
+```
 
 ## Deployment
 
@@ -48,6 +91,7 @@ current directory)
 ## Roadmap
 
 - [ ] Update to Material UI
+- [ ] Easier way to configure server
 - [ ] Deadline reminder notifications
 - [ ] Multiple todo lists per user
 - [ ] Share todo lists with others
