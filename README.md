@@ -71,8 +71,9 @@ const server = new Server({
 deno task build
 ```
 
-This demo is currently deployed on a single t4g.nano EC2 instance that is shared
-with other GoatDB projects. Thanks to GoatDB's distributed architecture, clients
+This demo is currently deployed on a single
+[t4g.nano EC2 instance](https://aws.amazon.com/ec2/instance-types/t4/) that is
+shared with other projects. Thanks to GoatDB's distributed architecture, clients
 act as active replicas of the data. If the server fails, clients retain full
 functionality and can restore server state when it comes back online. This
 provides resilience against server outages without requiring complex
