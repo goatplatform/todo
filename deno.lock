@@ -2,7 +2,7 @@
   "version": "4",
   "specifiers": {
     "jsr:@goatdb/goatdb@*": "0.0.90",
-    "jsr:@goatdb/goatdb@~0.1.3": "0.1.3",
+    "jsr:@goatdb/goatdb@~0.1.6": "0.1.6",
     "jsr:@luca/esbuild-deno-loader@~0.11.1": "0.11.1",
     "jsr:@std/bytes@^1.0.2": "1.0.5",
     "jsr:@std/data-structures@^1.0.6": "1.0.6",
@@ -37,15 +37,14 @@
         "jsr:@std/path@^1.0.8"
       ]
     },
-    "@goatdb/goatdb@0.1.3": {
-      "integrity": "88e8226754d769d07a8d73e9c46068fd9fb04684558400eaf0cc7aef5a97eb0a",
+    "@goatdb/goatdb@0.1.6": {
+      "integrity": "1a4015e3cd07133431014442416e259a2998a62e725ce83ed47f09c5de4ce741",
       "dependencies": [
         "jsr:@luca/esbuild-deno-loader",
         "jsr:@std/data-structures",
         "jsr:@std/encoding@1.0.6",
         "jsr:@std/fs",
         "jsr:@std/path@^1.0.8",
-        "npm:@types/react",
         "npm:esbuild",
         "npm:nodemailer",
         "npm:react"
@@ -2188,7 +2187,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@goatdb/goatdb@~0.1.3",
+      "jsr:@goatdb/goatdb@~0.1.6",
       "jsr:@std/path@^1.0.8",
       "npm:@aws-sdk/client-ses@^3.750.0",
       "npm:@emotion/react@^11.14.0",
