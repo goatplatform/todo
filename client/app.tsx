@@ -2,47 +2,42 @@
 import React, { useRef, useState } from "react";
 import { useDB, useDBReady, useItem, useQuery } from "@goatdb/goatdb/react";
 import { kSchemaTask, type SchemaTypeTask } from "../common/schema.ts";
+import { DeleteOutlineOutlined, LogoutRounded } from "@mui/icons-material";
 import {
   Alert,
+  AlertTitle,
+  Box,
   Button,
   Checkbox,
   CircularProgress,
   FormControl,
-  FormLabel,
   IconButton,
-  Input,
-  Sheet,
+  Paper,
+  TextField,
   Typography,
-} from "@mui/joy";
-import {
-  CodeOutlined,
-  DeleteOutlineOutlined,
-  LogoutRounded,
-} from "@mui/icons-material";
+} from "@mui/material";
 
 export function Header() {
   const db = useDB();
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <Sheet
-      variant="outlined"
+    <Paper
+      elevation={2}
       sx={{
         p: 2,
-        mb: 2,
+        mb: 3,
         display: "flex",
         gap: 2,
         alignItems: "center",
-        borderRadius: "sm",
+        borderRadius: 2,
       }}
     >
-      <Input
+      <TextField
         placeholder="Enter task..."
-        slotProps={{
-          input: {
-            ref,
-          },
-        }}
+        inputRef={ref}
         sx={{ flexGrow: 1 }}
+        variant="outlined"
+        size="medium"
         onKeyDown={(e) => {
           if (e.key === "Enter" && ref.current?.value) {
             db.create(`/data/${db.currentUser!.key}`, kSchemaTask, {
@@ -51,31 +46,43 @@ export function Header() {
             ref.current.value = "";
           }
         }}
-        endDecorator={
-          <Button
-            onClick={() => {
-              if (ref.current?.value) {
-                db.create(`/data/${db.currentUser!.key}`, kSchemaTask, {
-                  text: ref.current.value,
-                });
-                ref.current.value = "";
-              }
-            }}
-          >
-            Add
-          </Button>
-        }
+        InputProps={{
+          endAdornment: (
+            <Button
+              variant="contained"
+              color="primary"
+              disableElevation
+              onClick={() => {
+                if (ref.current?.value) {
+                  db.create(`/data/${db.currentUser!.key}`, kSchemaTask, {
+                    text: ref.current.value,
+                  });
+                  ref.current.value = "";
+                }
+              }}
+            >
+              Add
+            </Button>
+          ),
+        }}
       />
       <IconButton
-        variant="soft"
-        color="neutral"
+        color="primary"
+        aria-label="logout"
         onClick={() => {
           db.logout();
+        }}
+        sx={{
+          ml: 1,
+          bgcolor: "action.hover",
+          "&:hover": {
+            bgcolor: "action.selected",
+          },
         }}
       >
         <LogoutRounded />
       </IconButton>
-    </Sheet>
+    </Paper>
   );
 }
 
@@ -88,41 +95,60 @@ export function TaskItem({ path }: TaskItemProps) {
   const task = useItem<SchemaTypeTask>(path)!;
   // Updating the item automatically triggers remote updates in realtime
   return (
-    <Sheet
+    <Paper
+      elevation={0}
       sx={{
         display: "flex",
         gap: 2,
         alignItems: "center",
+        py: 1,
+        px: 2,
+        transition: "all 0.2s",
+        "&:hover": {
+          bgcolor: "action.hover",
+        },
       }}
     >
       <Checkbox
         checked={task.get("done")}
         onChange={(event) => task.set("done", event.target.checked)}
+        color="primary"
       />
-      <Input
+      <TextField
         value={task.get("text")}
         onChange={(event) => task.set("text", event.target.value)}
+        variant="standard"
         sx={{ flexGrow: 1 }}
+        InputProps={{
+          sx: {
+            textDecoration: task.get("done") ? "line-through" : "none",
+            color: task.get("done") ? "text.secondary" : "text.primary",
+          },
+        }}
       />
       <Button
-        variant="soft"
-        color="danger"
-        size="sm"
-        startDecorator={<DeleteOutlineOutlined />}
+        variant="outlined"
+        color="error"
+        size="small"
+        startIcon={<DeleteOutlineOutlined />}
         onClick={() => {
           task.isDeleted = true;
         }}
         sx={{
-          borderRadius: "md",
-          boxShadow: "sm",
+          borderRadius: 2,
+          minWidth: "80px",
+          transition: "all 0.2s",
           "&:hover": {
-            boxShadow: "md",
+            boxShadow: 1,
+            bgcolor: "error.light",
+            color: "error.contrastText",
+            borderColor: "error.light",
           },
         }}
       >
         Delete
       </Button>
-    </Sheet>
+    </Paper>
   );
 }
 
@@ -150,58 +176,73 @@ export function Contents() {
     },
   });
   return (
-    <Sheet
-      variant="outlined"
+    <Paper
+      elevation={3}
       sx={{
         maxWidth: 800,
+        width: "95%",
         mx: "auto",
         my: 4,
-        p: 3,
-        borderRadius: "sm",
+        p: { xs: 2, sm: 3 },
+        borderRadius: 3,
       }}
     >
       <Header />
-      <Sheet
-        variant="soft"
+      <Paper
+        elevation={0}
         sx={{
           p: 2,
-          mb: 2,
+          mb: 3,
           display: "flex",
           alignItems: "center",
+          justifyContent: "space-between",
           gap: 1,
-          borderRadius: "sm",
+          borderRadius: 2,
+          bgcolor: "action.hover",
         }}
       >
-        <Typography>Show Completed Tasks</Typography>
+        <Typography variant="subtitle1" fontWeight="medium">
+          Show Completed Tasks
+        </Typography>
         <Checkbox
           checked={showChecked}
           onChange={(event) => setShowChecked(event.target.checked)}
+          color="primary"
         />
-      </Sheet>
-      <Sheet
-        variant="outlined"
+      </Paper>
+      <Paper
+        elevation={1}
         sx={{
-          borderRadius: "sm",
+          borderRadius: 2,
           overflow: "auto",
+          maxHeight: "60vh",
         }}
       >
-        {query.results().map(({ path }) => (
-          <Sheet
-            key={path}
-            sx={{
-              p: 2,
-              borderBottom: "1px solid",
-              borderColor: "divider",
-              "&:last-child": {
-                borderBottom: "none",
-              },
-            }}
-          >
-            <TaskItem path={path} />
-          </Sheet>
-        ))}
-      </Sheet>
-    </Sheet>
+        {query.results().length > 0
+          ? (
+            query.results().map(({ path }) => (
+              <Paper
+                key={path}
+                elevation={0}
+                sx={{
+                  borderBottom: "1px solid",
+                  borderColor: "divider",
+                  "&:last-child": {
+                    borderBottom: "none",
+                  },
+                }}
+              >
+                <TaskItem path={path} />
+              </Paper>
+            ))
+          )
+          : (
+            <Box sx={{ p: 4, textAlign: "center" }}>
+              <Typography color="text.secondary">No tasks found</Typography>
+            </Box>
+          )}
+      </Paper>
+    </Paper>
   );
 }
 
@@ -223,35 +264,52 @@ export function Login() {
   };
 
   return (
-    <Sheet
-      variant="outlined"
+    <Paper
+      elevation={3}
       sx={{
         maxWidth: 400,
+        width: "90%",
         mx: "auto",
-        my: 4,
-        p: 3,
-        borderRadius: "sm",
+        my: { xs: 2, sm: 4, md: 8 },
+        p: { xs: 2, sm: 3, md: 4 },
+        borderRadius: 2,
       }}
     >
-      <Typography level="h4" component="h1" sx={{ mb: 2 }}>
+      <Typography variant="h4" component="h1" gutterBottom fontWeight="medium">
         Welcome
+      </Typography>
+      <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 3 }}>
+        Sign in to access your tasks
       </Typography>
 
       <form onSubmit={handleSubmit}>
-        <FormControl sx={{ mb: 2 }}>
-          <FormLabel>Email</FormLabel>
-          <Input
+        <FormControl fullWidth sx={{ mb: 3 }}>
+          <TextField
+            id="email"
             type="email"
+            label="Email address"
             placeholder="Enter your email"
             value={email}
             autoFocus
             onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+            variant="outlined"
           />
         </FormControl>
 
         <Button
           type="submit"
+          variant="contained"
+          color="primary"
           fullWidth
+          size="large"
+          disableElevation
+          sx={{
+            py: 1.5,
+            borderRadius: 2,
+            textTransform: "none",
+            fontWeight: "bold",
+          }}
         >
           Send Login Link
         </Button>
@@ -259,24 +317,24 @@ export function Login() {
 
       {emailSent && (
         <Alert
-          variant="soft"
-          color="success"
-          sx={{ mt: 2 }}
+          severity="success"
+          sx={{ mt: 3, borderRadius: 2 }}
         >
+          <AlertTitle>Success</AlertTitle>
           Email sent! Please check your inbox.
         </Alert>
       )}
 
       {sendError && (
         <Alert
-          variant="soft"
-          color="danger"
-          sx={{ mt: 2 }}
+          severity="error"
+          sx={{ mt: 3, borderRadius: 2 }}
         >
+          <AlertTitle>Error</AlertTitle>
           Error sending email. Please try again later.
         </Alert>
       )}
-    </Sheet>
+    </Paper>
   );
 }
 
@@ -287,46 +345,58 @@ export function App() {
   // Handle initial loading phase
   if (ready === "loading") {
     return (
-      <Sheet
+      <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           minHeight: "100vh",
-          gap: 2,
+          gap: 3,
+          bgcolor: (theme) => theme.palette.background.default,
         }}
       >
-        <CircularProgress size="lg" />
-        <Typography level="body-sm">Loading...</Typography>
-      </Sheet>
+        <CircularProgress size={60} thickness={4} />
+        <Typography variant="h6" color="text.secondary">
+          Loading your tasks...
+        </Typography>
+      </Box>
     );
   }
 
   if (ready === "error") {
     return (
-      <Sheet
+      <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           minHeight: "100vh",
-          p: 2,
+          p: 3,
+          bgcolor: (theme) => theme.palette.background.default,
         }}
       >
         <Alert
-          variant="soft"
-          color="danger"
-          size="lg"
-          sx={{ maxWidth: 400 }}
+          severity="error"
+          variant="filled"
+          sx={{ maxWidth: 450, borderRadius: 2 }}
         >
-          <Typography level="h4">Error</Typography>
-          <Typography level="body-sm">
-            Something went wrong. Please reload the page.
+          <AlertTitle>Connection Error</AlertTitle>
+          <Typography variant="body1">
+            We couldn't connect to the server. Please check your internet
+            connection and reload the page.
           </Typography>
+          <Button
+            variant="contained"
+            color="inherit"
+            sx={{ mt: 2 }}
+            onClick={() => window.location.reload()}
+          >
+            Reload Page
+          </Button>
         </Alert>
-      </Sheet>
+      </Box>
     );
   }
 

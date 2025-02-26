@@ -15,6 +15,18 @@ persistence using GoatDB's server framework.
 - Clients continue functioning even when the server is offline
 - Realtime collaboration engine synchronizes changes across clients
 
+## Roadmap
+
+- [x] Update to Material UI
+- [ ] Easier way to configure server
+- [ ] Deadline reminder notifications
+- [ ] Multiple todo lists per user
+- [ ] Share todo lists with others
+
+## Screenshots
+
+<img width="1792" alt="Screenshot 2025-02-24 at 14 30 55" src="https://github.com/user-attachments/assets/206a1f22-929f-458c-8e81-e0205732a6a5" />
+
 ## Quick Start
 
 1. Clone this repository
@@ -88,15 +100,3 @@ server.
 Backing up your todo list data is straightforward. Simply zip the server's data
 directory (specified when starting the server, defaults to `todo-data` in the
 current directory)
-
-## Roadmap
-
-- [ ] Update to Material UI
-- [ ] Easier way to configure server
-- [ ] Deadline reminder notifications
-- [ ] Multiple todo lists per user
-- [ ] Share todo lists with others
-
-## Screenshots
-
-<img width="1792" alt="Screenshot 2025-02-24 at 14 30 55" src="https://github.com/user-attachments/assets/206a1f22-929f-458c-8e81-e0205732a6a5" />
